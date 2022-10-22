@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CATEGORY_REPOSITORY } from 'src/constants';
+import { CATEGORY_REPOSITORY } from 'src/core/constants';
 import { Category } from './category.entity';
 
 @Injectable()

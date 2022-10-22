@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import { Category } from "src/category/category.entity";
+import { Product } from "src/product/product.entity";
 import { databaseConfig } from "./database.config";
 
 export const databaseProviders = [{
@@ -14,7 +15,8 @@ export const databaseProviders = [{
                 }
             });
             sequelize.addModels([
-                Category
+                Category,
+                Product,
             ]);
             // await sequelize.sync() // Avoid overwriting
             return sequelize;
