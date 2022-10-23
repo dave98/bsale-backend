@@ -7,12 +7,12 @@
         }
     ],
     "env": {
-        "DB_DIALECT": "@db-dialect",
-        "DB_HOST": "@db-host",
-        "DB_PORT": "@db-port",
-        "DB_USERNAME": "@db-username",
-        "DB_PASSWORD": "@db-password",
-        "DB_DATABASE": "@db-database"
+        "DB_DIALECT": "@dbdialect",
+        "DB_HOST": "@dbhost",
+        "DB_PORT": "@dbport",
+        "DB_USERNAME": "@dbusername",
+        "DB_PASSWORD": "@dbpassword",
+        "DB_DATABASE": "@dbdatabase"
     },
     "routes": [
         {
