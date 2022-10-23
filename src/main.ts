@@ -8,6 +8,6 @@ async function bootstrap() {
   app.enableCors();
   app.setGlobalPrefix("api/v1");
   //app.useGlobalFilters(new ValidateInputPipe({whitelist: true}));
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 8080);
 }
 bootstrap();
