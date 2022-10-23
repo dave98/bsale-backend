@@ -1,12 +1,12 @@
 {
     "version": 2,
     "env": {
-        "DB_DIALECT": "@db_dialect",
-        "DB_HOST": "@db_host",
-        "DB_PORT": "@db_port",
-        "DB_USERNAME": "@db_username",
-        "DB_PASSWORD": "@db_password",
-        "DB_DATABASE": "@db_database"
+        "DB_DIALECT": "@DB_DIALECT",
+        "DB_HOST": "@DB_HOST",
+        "DB_PORT": "@DB_PORT",
+        "DB_USERNAME": "@DB_USERNAME",
+        "DB_PASSWORD": "@DB_PASSWORD",
+        "DB_DATABASE": "@DB_DATABASE"
     },
     "builds": [
         {
