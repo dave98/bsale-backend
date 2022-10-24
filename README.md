@@ -1,3 +1,5 @@
+# BSale Backend
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -5,7 +7,7 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center">Built with <a href="https://nestjs.com/" target="_blank">Nest.js</a>, a framework for building efficient and scalable server-side applications.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
@@ -24,7 +26,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+BSale Backend is an API REST developed with [NestJs](https://github.com/nestjs/nest) using Sequelize - Typescript as intermediate ORM and MySql provided by BSale as data source. Original data structure was not affected by ORM Sync func.
 
 ## Installation
 
@@ -40,34 +42,133 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+# Endpoint configuration
 
-```bash
-# unit tests
-$ npm run test
+All interactions with BSale Backend must be done with HTTP request with JSON format.
 
-# e2e tests
-$ npm run test:e2e
+## Get all categories
 
-# test coverage
-$ npm run test:cov
+```js
+GET /api/v1/category
+```
+### Parameters
+- This endpoint does not require any other parameter.
+
+### Results
+- Returns an array with all categories, if no category is founded returns an empty array.
+
+```json
+[
+  {
+        "id": 1,
+        "name": "bebida energetica"
+    },
+    {
+        "id": 2,
+        "name": "pisco"
+    }
+]
 ```
 
-## Support
+## Get a category
+```js
+GET /api/v1/category/{category-id}
+```
+### Parameters
+- {category-id} should be replaced with a number as a valid category ID. 
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Results
+- Returns an object with and id and a name. If provided parameter is invalid then a not found error response is sent.
+
+```json
+{
+    "id": 5,
+    "name": "snack"
+}
+```
+
+## Get products
+
+```js
+GET /api/v1/products
+```
+
+### Parameters
+- Without parameters this endpoint will return all products.
+- Parameters available for this endpoint work as a filters and their behavior is ACCUMULATIVE. Therefore, query will be filtered based on each of the parameter you have used and results might be shorter.
+- → _name_ Allows filtering by product name. Return all products with _name_ as  a subtring in product name.
+- → _minprice_ Filter by product price. Return all products with a price above _minprice_
+- → _maxprice_ Filter by product price.  Return all products with a price under _maxprice_
+- If _minprice_ and _maxprice_ are used simultaneously, results will be within a range
+- → _category_ Allows filtering by product category ID.  
+
+### Examples
+```js
+GET /api/v1/product  // All avaliable products
+GET /api/v1/product?name=cerveza // All available products with "cerveza" as  a subtring in product name
+GET /api/v1/product?name=cerveza&minprice=700
+GET /api/v1/product?name=cerveza&minprice=700&maxprice=900
+GET /api/v1/product?name=cerveza&minprice=700&maxprice=900&category=6
+```
+
+### Results 
+- Returns an array with all products that fitted with filter configuration, if no product is founded returns an empty array.
+
+```json
+[
+    {
+        "id": 98,
+        "name": "Cerveza Escudo Normal LATA 350CC",
+        "urlImage": "",
+        "price": 600,
+        "discount": 0,
+        "category": {
+            "id": 6
+        }
+    },
+    {
+        "id": 99,
+        "name": "Cerveza Escudo Sin Filtrar LATA 350CC",
+        "urlImage": "",
+        "price": 800,
+        "discount": 0,
+        "category": {
+            "id": 6
+        }
+    }
+]
+```
+
+## Get a category
+```js
+GET /api/v1/product/{product-id}
+```
+### Parameters
+- {product-id} should be replaced with a number as a valid product ID. 
+
+### Results
+- Returns an object with and id, name, urlImage, price, discount and category.id . If provided parameter is invalid then a not found error response is sent.
+
+```json
+{
+    "id": 5,
+    "name": "ENERGETICA MR BIG",
+    "urlImage": "https://dojiw2m9tvv09.cloudfront.net/11132/product/misterbig3308256.jpg",
+    "price": 1490,
+    "discount": 20,
+    "category": {
+        "id": 1
+    }
+}
+```
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Crazy Dave](https://www.linkedin.com/in/crazy-dave/)
+- Website - [https://thecrazydave.vercel.app](https://thecrazydave.vercel.app)
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+BSale Backend is under [MIT licensed](LICENSE).
