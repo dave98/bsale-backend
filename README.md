@@ -97,10 +97,10 @@ GET /api/v1/products
 
 ### Parameters
 - Without parameters this endpoint will return all products.
-- Parameters available for this endpoint work as a filters and their behavior is ACCUMULATIVE. Therefore, query will be filtered based on each of the parameter you have used and results might be shorter.
-- → _name_ Allows filtering by product name. Return all products with _name_ as  a subtring in product name.
-- → _minprice_ Filter by product price. Return all products with a price above _minprice_
-- → _maxprice_ Filter by product price.  Return all products with a price under _maxprice_
+- Parameters available for this endpoint work as filters and their behavior is ACCUMULATIVE. Therefore, query will be filtered based on each of the parameter you have used and results might be shorter.
+- → _name_ Allows filtering by product name. Returns all products with _name_ as  a subtring in product name.
+- → _minprice_ Filter by product price. Returns all products with a price above _minprice_
+- → _maxprice_ Filter by product price.  Returns all products with a price under _maxprice_
 - If _minprice_ and _maxprice_ are used simultaneously, results will be within a range
 - → _category_ Allows filtering by product category ID.  
 
@@ -141,7 +141,7 @@ GET /api/v1/product?name=cerveza&minprice=700&maxprice=900&category=6
 ]
 ```
 
-## Get a category
+## Get a product
 ```js
 GET /api/v1/product/{product-id}
 ```
